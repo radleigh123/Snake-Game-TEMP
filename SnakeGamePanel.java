@@ -196,45 +196,50 @@ public class SnakeGamePanel extends JPanel implements ActionListener {
     }
 
     public class MyAdapter extends KeyAdapter {
+        private boolean keyPressed = false;
+
         @Override
         public void keyPressed(KeyEvent e) {
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_LEFT:
-                    if (direction != 'D')
-                        direction = 'A';
-                    break;
-                case KeyEvent.VK_A:
-                    if (direction != 'D')
-                        direction = 'A';
-                    break;
+            if (!keyPressed) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_A:
+                        if (direction != 'D') {
+                            direction = 'A';
+                            keyPressed = true;
+                        }
+                        break;
 
-                case KeyEvent.VK_RIGHT:
-                    if (direction != 'A')
-                        direction = 'D';
-                    break;
-                case KeyEvent.VK_D:
-                    if (direction != 'A')
-                        direction = 'D';
-                    break;
+                    case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_D:
+                        if (direction != 'A') {
+                            direction = 'D';
+                            keyPressed = true;
+                        }
+                        break;
 
-                case KeyEvent.VK_UP:
-                    if (direction != 'S')
-                        direction = 'W';
-                    break;
-                case KeyEvent.VK_W:
-                    if (direction != 'S')
-                        direction = 'W';
-                    break;
+                    case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
+                        if (direction != 'S') {
+                            direction = 'W';
+                            keyPressed = true;
+                        }
+                        break;
 
-                case KeyEvent.VK_DOWN:
-                    if (direction != 'W')
-                        direction = 'S';
-                    break;
-                case KeyEvent.VK_S:
-                    if (direction != 'W')
-                        direction = 'S';
-                    break;
+                    case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
+                        if (direction != 'W') {
+                            direction = 'S';
+                            keyPressed = true;
+                        }
+                        break;
+                }
             }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            keyPressed = false;
         }
 
     }
